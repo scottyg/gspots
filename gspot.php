@@ -10,4 +10,9 @@ Text Domain: gspot
 Domain Path: /languages
 */
 
-require_once( "post-type.php");
+$dir = plugin_dir_path( __FILE__ );
+$url = plugin_dir_url( __FILE__ );
+
+require_once( $dir. "core/post-type.php" );
+require_once( $dir. "core/taxonomy.php" );
+require_once( $dir. "core/meta-box.php" );
