@@ -90,6 +90,7 @@ function gspot_meta_save( $post_id ) {
 	if( isset( $_POST[ 'meta-lat-text' ] ) ) {
 		update_post_meta( $post_id, 'meta-lat-text', sanitize_text_field( $_POST[ 'meta-lat-text' ] ) );
 	}
+	// Calculate Long and lat from google
 	if( isset( $_POST[ 'meta-address-text' ] ) || isset( $_POST[ 'meta-zip-text' ] ) || isset( $_POST[ 'meta-city-text' ] ) || isset( $_POST[ 'meta-state-text' ] ) ) {
 		$region = "US";
 		$address = sanitize_text_field( $_POST[ 'meta-address-text' ] ) . " ";
@@ -130,13 +131,3 @@ function gspot_admin_styles(){
 	}
 }
 add_action( 'admin_print_styles', 'gspot_admin_styles' );
-
-function my_custom_notice()
-{
-    global $current_screen;
-
-    if ( 'location' == $current_screen->post_type )
-        {
-            echo "<h1>Whatever needs to be said</h1>";
-        }
-}
