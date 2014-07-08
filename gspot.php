@@ -16,3 +16,4 @@ $url = plugin_dir_url( __FILE__ );
 require_once( $dir. "core/post-type.php" );
 require_once( $dir. "core/taxonomy.php" );
 require_once( $dir. "core/meta-box.php" );
+require_once( $dir. "core/shortcode.php" );
