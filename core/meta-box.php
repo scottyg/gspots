@@ -34,6 +34,8 @@ function gspot_meta_callback( $post ) {
 		<label for="meta-state-text" class="gspot-row-title"><?php _e( 'State', 'gspot-textdomain' )?></label>
 		<input type="text" name="meta-state-text" id="meta-state-text" value="<?php if ( isset ( $gspot_stored_meta['meta-state-text'] ) ) echo $gspot_stored_meta['meta-state-text'][0]; ?>" />
 	</p>
+
+	<p><small>Longitude and latitude are calculated automatically when the post is saved or published.</small></p>
 	
 	<p>
 		<label for="meta-lng-text" class="gspot-row-title"><?php _e( 'Longitude', 'gspot-textdomain' )?></label>
@@ -45,10 +47,9 @@ function gspot_meta_callback( $post ) {
 		<input type="text" name="meta-lat-text" id="meta-lat-text" value="<?php if ( isset ( $gspot_stored_meta['meta-lat-text'] ) ) echo $gspot_stored_meta['meta-lat-text'][0]; ?>" disabled="disabled"/>
 	</p>
 	
+	
 	<?php
 }
-
-
 
 /**
  * Saves the custom meta input
@@ -89,11 +90,35 @@ function gspot_meta_save( $post_id ) {
 	if( isset( $_POST[ 'meta-lat-text' ] ) ) {
 		update_post_meta( $post_id, 'meta-lat-text', sanitize_text_field( $_POST[ 'meta-lat-text' ] ) );
 	}
-
+	if( isset( $_POST[ 'meta-address-text' ] ) || isset( $_POST[ 'meta-zip-text' ] ) || isset( $_POST[ 'meta-city-text' ] ) || isset( $_POST[ 'meta-state-text' ] ) ) {
+		$region = "US";
+		$address = sanitize_text_field( $_POST[ 'meta-address-text' ] ) . " ";
+		$zip = sanitize_text_field( $_POST[ 'meta-zip-text' ] ) . " ";
+		$city = sanitize_text_field( $_POST[ 'meta-city-text' ] ) . " ";
+		$state = sanitize_text_field( $_POST[ 'meta-state-text' ] );
+		//$address = "89117";
+		$full_address = $address . $zip . $city . $state;
+		
+		$url = "http://maps.google.com/maps/api/geocode/json?address=".urlencode($full_address)."&sensor=false";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		$response_a = json_decode($response);
+		$lat = $response_a->results[0]->geometry->location->lat;
+		$long = $response_a->results[0]->geometry->location->lng;
+		
+		update_post_meta( $post_id, 'meta-lng-text', $long );
+		update_post_meta( $post_id, 'meta-lat-text', $lat );
+		
+	}
 
 }
 add_action( 'save_post', 'gspot_meta_save' );
-
 
 /**
  * Adds the meta box stylesheet when appropriate
@@ -106,3 +131,12 @@ function gspot_admin_styles(){
 }
 add_action( 'admin_print_styles', 'gspot_admin_styles' );
 
+function my_custom_notice()
+{
+    global $current_screen;
+
+    if ( 'location' == $current_screen->post_type )
+        {
+            echo "<h1>Whatever needs to be said</h1>";
+        }
+}
