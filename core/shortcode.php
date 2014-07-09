@@ -49,9 +49,15 @@ class gspots_Shortcode {
 	}
 	
 	static function inline_script() {
+	
+		$geocode = self::geocode(self::$attributes['zip']);
+		
 		echo "
 	<script type='text/javascript'>
-		var ".self::$instance_id.";
+	
+	console.log('" . $geocode . "');
+	
+	var ".self::$instance_id.";
 		$(document).ready(function(){
 			".self::$instance_id." = new GMaps({
 				el: '#".self::$instance_id."',
@@ -96,7 +102,24 @@ class gspots_Shortcode {
 	}
 	
 	static function geocode( $zip ) {
-		$return = null;
+		if( isset( $zip ) ){
+			$url = "http://maps.google.com/maps/api/geocode/json?address=".urlencode($zip)."&sensor=false";
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$response = curl_exec($ch);
+			curl_close($ch);
+			$response_a = json_decode($response);
+			$return['lt'] = $response_a->results[0]->geometry->location->lat;
+			$return['ln'] = $response_a->results[0]->geometry->location->lng;
+			$return = json_encode($return);
+		}else{
+			$return['error'] = '10: ' . 'No zip code';
+			$return = json_encode($return);
+		}
 		return $return;
 	}
 
