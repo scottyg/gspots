@@ -2,7 +2,7 @@
 /**
  * Adds Settings Page
  */
-class GspotSettingsPage
+class gspotsSettingsPage
 {
 	/**
 	 * Holds the values to be used in the fields callbacks
@@ -26,9 +26,9 @@ class GspotSettingsPage
 		// This page will be under "Settings"
 		add_options_page(
 			'Settings Admin', 
-			'Gspot', 
+			'gspots', 
 			'manage_options', 
-			'gspot-setting-admin', 
+			'gspots-setting-admin', 
 			array( $this, 'create_admin_page' )
 		);
 	}
@@ -43,12 +43,12 @@ class GspotSettingsPage
 		?>
 		<div class="wrap">
 			<?php screen_icon(); ?>
-			<h2>Gspot Settings</h2>		   
+			<h2>gspots Settings</h2>		   
 			<form method="post" action="options.php">
 			<?php
 				// This prints out all hidden setting fields
 				settings_fields( 'api_key_group' );   
-				do_settings_sections( 'gspot-setting-admin' );
+				do_settings_sections( 'gspots-setting-admin' );
 				submit_button(); 
 			?>
 			</form>
@@ -71,14 +71,14 @@ class GspotSettingsPage
 			'setting_section_id', // ID
 			'API Settings', // Title
 			array( $this, 'print_section_info' ), // Callback
-			'gspot-setting-admin' // Page
+			'gspots-setting-admin' // Page
 		);  
 
 		add_settings_field(
 			'key', // ID
 			'API Key', // Title 
 			array( $this, 'api_key_callback' ), // Callback
-			'gspot-setting-admin', // Page
+			'gspots-setting-admin', // Page
 			'setting_section_id' // Section		   
 		);		  
 	}
@@ -119,4 +119,4 @@ class GspotSettingsPage
 }
 
 if( is_admin() )
-	$gspot_settings_page = new GspotSettingsPage();
+	$gspots_settings_page = new gspotsSettingsPage();

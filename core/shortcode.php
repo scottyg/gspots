@@ -1,18 +1,18 @@
 <?php
 /**
- * Adds Shortcode [gspot zip=89118 radius=50 ]
+ * Adds Shortcode [gspots zip=89118 radius=50 ]
  */
 
-class Gspot_Shortcode {
+class gspots_Shortcode {
 	static $add_script;
 	static $instance_id;
 	static $attributes;
 	
 	static function init() {
 	
-		self::$instance_id = "gspot_" . uniqid();
+		self::$instance_id = "gspots_" . uniqid();
 
-		add_shortcode('gspot', array(__CLASS__, 'handle_shortcode'));
+		add_shortcode('gspots', array(__CLASS__, 'handle_shortcode'));
 
 		add_action('wp_enqueue_scripts', array(__CLASS__, 'register_script'), 9999 );
 		add_action('wp_footer', array(__CLASS__, 'inline_script'), 9999 );
@@ -23,7 +23,7 @@ class Gspot_Shortcode {
 		self::$add_script = true;
 		
 		self::$attributes = shortcode_atts( array(
-				'class' => 'gspot',
+				'class' => 'gspots',
 				'radius' => 50,
 				'scroll' => true,
 				'zip' => 89135,
@@ -44,7 +44,7 @@ class Gspot_Shortcode {
 		wp_enqueue_script('google-maps-api');
 		wp_enqueue_script('gmaps');
 		
-		wp_enqueue_style( 'gspot_styles', plugins_url('/style/gspot.css', __FILE__) );
+		wp_enqueue_style( 'gspots_styles', plugins_url('/style/gspots.css', __FILE__) );
 
 	}
 	
@@ -94,8 +94,13 @@ class Gspot_Shortcode {
 	
 		";
 	}
+	
+	static function geocode( $zip ) {
+		$return = null;
+		return $return;
+	}
 
 }
 
-Gspot_Shortcode::init();
+gspots_Shortcode::init();
 

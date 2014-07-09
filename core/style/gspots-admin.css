@@ -1,24 +1,24 @@
-#gspot_meta{
+#gspots_meta{
 	overflow: hidden;
 	padding-bottom: 1em;
 }
 
-#gspot_meta p{
+#gspots_meta p{
 	clear: both;
 }
 
-.gspot-row-title{
+.gspots-row-title{
 	display: block;
 	float: left;
 	width: 200px;
 }
 
-.gspot-row-content{
+.gspots-row-content{
 	float: left;
 	padding-bottom: 1em;
 }
 
-.gspot-row-content label{
+.gspots-row-content label{
 	display: block;
 	line-height: 1.75em;
 }

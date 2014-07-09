@@ -1,10 +1,10 @@
-.gspot{
+.gspots{
 	min-height: 300px !important;
 }
-.gspot img {
+.gspots img {
 	max-width: none;
 }
-.gspot label {
+.gspots label {
 	width: auto;
 	display: inline;
 }

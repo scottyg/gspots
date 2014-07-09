@@ -1,4 +1,4 @@
-gspot
+gspots
 =====
 
 Google Maps Location Finder

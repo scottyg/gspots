@@ -2,49 +2,49 @@
 /**
  * Adds a meta box to the post editing screen
  */
-function gspot_custom_meta() {
-	add_meta_box( 'gspot_meta', __( 'Location Details', 'gspot-textdomain' ), 'gspot_meta_callback', 'location' );
+function gspots_custom_meta() {
+	add_meta_box( 'gspots_meta', __( 'Location Details', 'gspots-textdomain' ), 'gspots_meta_callback', 'location' );
 }
-add_action( 'add_meta_boxes', 'gspot_custom_meta' );
+add_action( 'add_meta_boxes', 'gspots_custom_meta' );
 
 /**
  * Outputs the content of the meta box
  */
-function gspot_meta_callback( $post ) {
-	wp_nonce_field( basename( __FILE__ ), 'gspot_nonce' );
-	$gspot_stored_meta = get_post_meta( $post->ID );
+function gspots_meta_callback( $post ) {
+	wp_nonce_field( basename( __FILE__ ), 'gspots_nonce' );
+	$gspots_stored_meta = get_post_meta( $post->ID );
 	?>
 
 	<p>
-		<label for="meta-address-text" class="gspot-row-title"><?php _e( 'Address', 'gspot-textdomain' )?></label>
-		<input type="text" name="meta-address-text" id="meta-address-text" value="<?php if ( isset ( $gspot_stored_meta['meta-address-text'] ) ) echo $gspot_stored_meta['meta-address-text'][0]; ?>" />
+		<label for="meta-address-text" class="gspots-row-title"><?php _e( 'Address', 'gspots-textdomain' )?></label>
+		<input type="text" name="meta-address-text" id="meta-address-text" value="<?php if ( isset ( $gspots_stored_meta['meta-address-text'] ) ) echo $gspots_stored_meta['meta-address-text'][0]; ?>" />
 	</p>
 	
 	<p>
-		<label for="meta-zip-text" class="gspot-row-title"><?php _e( 'Zip', 'gspot-textdomain' )?></label>
-		<input type="text" name="meta-zip-text" id="meta-zip-text" value="<?php if ( isset ( $gspot_stored_meta['meta-zip-text'] ) ) echo $gspot_stored_meta['meta-zip-text'][0]; ?>" />
+		<label for="meta-zip-text" class="gspots-row-title"><?php _e( 'Zip', 'gspots-textdomain' )?></label>
+		<input type="text" name="meta-zip-text" id="meta-zip-text" value="<?php if ( isset ( $gspots_stored_meta['meta-zip-text'] ) ) echo $gspots_stored_meta['meta-zip-text'][0]; ?>" />
 	</p>
 	
 	<p>
-		<label for="meta-city-text" class="gspot-row-title"><?php _e( 'City', 'gspot-textdomain' )?></label>
-		<input type="text" name="meta-city-text" id="meta-city-text" value="<?php if ( isset ( $gspot_stored_meta['meta-city-text'] ) ) echo $gspot_stored_meta['meta-city-text'][0]; ?>" />
+		<label for="meta-city-text" class="gspots-row-title"><?php _e( 'City', 'gspots-textdomain' )?></label>
+		<input type="text" name="meta-city-text" id="meta-city-text" value="<?php if ( isset ( $gspots_stored_meta['meta-city-text'] ) ) echo $gspots_stored_meta['meta-city-text'][0]; ?>" />
 	</p>
 	
 	<p>
-		<label for="meta-state-text" class="gspot-row-title"><?php _e( 'State', 'gspot-textdomain' )?></label>
-		<input type="text" name="meta-state-text" id="meta-state-text" value="<?php if ( isset ( $gspot_stored_meta['meta-state-text'] ) ) echo $gspot_stored_meta['meta-state-text'][0]; ?>" />
+		<label for="meta-state-text" class="gspots-row-title"><?php _e( 'State', 'gspots-textdomain' )?></label>
+		<input type="text" name="meta-state-text" id="meta-state-text" value="<?php if ( isset ( $gspots_stored_meta['meta-state-text'] ) ) echo $gspots_stored_meta['meta-state-text'][0]; ?>" />
 	</p>
 
 	<p><small>Longitude and latitude are calculated automatically when the post is saved or published.</small></p>
 	
 	<p>
-		<label for="meta-lng-text" class="gspot-row-title"><?php _e( 'Longitude', 'gspot-textdomain' )?></label>
-		<input type="text" name="meta-lng-text" id="meta-lng-text" value="<?php if ( isset ( $gspot_stored_meta['meta-lng-text'] ) ) echo $gspot_stored_meta['meta-lng-text'][0]; ?>" disabled="disabled"/>
+		<label for="meta-lng-text" class="gspots-row-title"><?php _e( 'Longitude', 'gspots-textdomain' )?></label>
+		<input type="text" name="meta-lng-text" id="meta-lng-text" value="<?php if ( isset ( $gspots_stored_meta['meta-lng-text'] ) ) echo $gspots_stored_meta['meta-lng-text'][0]; ?>" disabled="disabled"/>
 	</p>
 	
 	<p>
-		<label for="meta-lat-text" class="gspot-row-title"><?php _e( 'Latitude', 'gspot-textdomain' )?></label>
-		<input type="text" name="meta-lat-text" id="meta-lat-text" value="<?php if ( isset ( $gspot_stored_meta['meta-lat-text'] ) ) echo $gspot_stored_meta['meta-lat-text'][0]; ?>" disabled="disabled"/>
+		<label for="meta-lat-text" class="gspots-row-title"><?php _e( 'Latitude', 'gspots-textdomain' )?></label>
+		<input type="text" name="meta-lat-text" id="meta-lat-text" value="<?php if ( isset ( $gspots_stored_meta['meta-lat-text'] ) ) echo $gspots_stored_meta['meta-lat-text'][0]; ?>" disabled="disabled"/>
 	</p>
 	
 	
@@ -54,12 +54,12 @@ function gspot_meta_callback( $post ) {
 /**
  * Saves the custom meta input
  */
-function gspot_meta_save( $post_id ) {
+function gspots_meta_save( $post_id ) {
  
 	// Checks save status
 	$is_autosave = wp_is_post_autosave( $post_id );
 	$is_revision = wp_is_post_revision( $post_id );
-	$is_valid_nonce = ( isset( $_POST[ 'gspot_nonce' ] ) && wp_verify_nonce( $_POST[ 'gspot_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	$is_valid_nonce = ( isset( $_POST[ 'gspots_nonce' ] ) && wp_verify_nonce( $_POST[ 'gspots_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
  
 	// Exits script depending on save status
 	if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
@@ -119,15 +119,15 @@ function gspot_meta_save( $post_id ) {
 	}
 
 }
-add_action( 'save_post', 'gspot_meta_save' );
+add_action( 'save_post', 'gspots_meta_save' );
 
 /**
  * Adds the meta box stylesheet when appropriate
  */
-function gspot_admin_styles(){
+function gspots_admin_styles(){
 	global $typenow;
 	if( $typenow == 'location' ) {
-		wp_enqueue_style( 'gspot_meta_box_styles', $url . 'style/gspot.css' );
+		wp_enqueue_style( 'gspots_meta_box_styles', $url . 'style/gspots.css' );
 	}
 }
-add_action( 'admin_print_styles', 'gspot_admin_styles' );
+add_action( 'admin_print_styles', 'gspots_admin_styles' );
