@@ -1,4 +1,7 @@
 <?php
+/**
+ * Adds Settings Page
+ */
 class GspotSettingsPage
 {
 	/**
@@ -120,7 +123,7 @@ class GspotSettingsPage
 	public function api_key_callback()
 	{
 		printf(
-			'<input type="text" id="key" name="api[key]" value="%s" />',
+			'<input type="text" id="key" name="api[key]" value="%s" class="regular-text" />',
 			isset( $this->options['key'] ) ? esc_attr( $this->options['key']) : ''
 		);
 	}

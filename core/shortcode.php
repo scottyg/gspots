@@ -1,11 +1,12 @@
 <?php
 /**
- * Shortcode
+ * Adds Shortcode [gspot zip=89118 radius=50 ]
  */
 
 class Gspot_Shortcode {
 	static $add_script;
 	static $instance_id;
+	static $attributes;
 	
 	static function init() {
 	
@@ -21,14 +22,16 @@ class Gspot_Shortcode {
 	static function handle_shortcode($atts) {
 		self::$add_script = true;
 		
-		$a = shortcode_atts( array(
+		self::$attributes = shortcode_atts( array(
 				'class' => 'gspot',
 				'radius' => 50,
-				'height' => 450,
+				'scroll' => true,
+				'zip' => 89135,
+				'zoom' => 15,
 		), $atts );
 		//return $a['radius'];
 		
-		$map_div = '<div id="'.self::$instance_id.'" class="'.$a['class'].'"></div>';
+		$map_div = '<div id="'.self::$instance_id.'" class="'.self::$attributes['class'].'"></div>';
 		
 		echo $map_div;
 	}
@@ -52,8 +55,10 @@ class Gspot_Shortcode {
 		$(document).ready(function(){
 			".self::$instance_id." = new GMaps({
 				el: '#".self::$instance_id."',
+				zoom: ".self::$attributes['zoom'].",
 				lat: -12.043333,
-				lng: -77.028333
+				lng: -77.028333,
+				scrollwheel: ".self::$attributes['scroll'].",
 			});
 			/*
 			".self::$instance_id.".addMarker({
@@ -83,8 +88,10 @@ class Gspot_Shortcode {
 				}
 			});
 			*/
+		
 		});
 	</script>
+	
 		";
 	}
 
