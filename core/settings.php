@@ -80,16 +80,7 @@ class GspotSettingsPage
 			array( $this, 'api_key_callback' ), // Callback
 			'gspot-setting-admin', // Page
 			'setting_section_id' // Section		   
-		);	  
-		/*
-		add_settings_field(
-			'title', 
-			'Title', 
-			array( $this, 'title_callback' ), 
-			'gspot-setting-admin', 
-			'setting_section_id'
-		);
-		*/	  
+		);		  
 	}
 
 	/**
@@ -99,14 +90,11 @@ class GspotSettingsPage
 	 */
 	public function sanitize( $input )
 	{
-		//$new_input = array();
-		//if( isset( $input['api_key'] ) )
-		//	$new_input['api_key'] = absint( $input['api_key'] );
+		$new_input = array();
+		if( isset( $input['api_key'] ) )
+			$new_input['api_key'] = sanitize_text_field( $input['api_key'] );
 
-		//if( isset( $input['title'] ) )
-		//$new_input['title'] = sanitize_text_field( $input['title'] );
-
-		return $input;
+		return $new_input;
 	}
 
 	/** 
@@ -114,7 +102,7 @@ class GspotSettingsPage
 	 */
 	public function print_section_info()
 	{
-		print 'Enter your settings below:';
+		print 'Enter your Google Maps Javascript v3 <a href="https://code.google.com/apis/console/" target="_blank">API key</a> below:<br/>';
 	}
 
 	/** 
@@ -128,19 +116,7 @@ class GspotSettingsPage
 		);
 	}
 
-	/** 
-	 * Get the settings option array and print one of its values
-	 */
-	public function title_callback()
-	{
-		/*
-		printf(
-			'<input type="text" id="title" name="api[title]" value="%s" />',
-			isset( $this->options['title'] ) ? esc_attr( $this->options['title']) : ''
-		);
-		*/
-	}
 }
 
 if( is_admin() )
-	$my_settings_page = new GspotSettingsPage();
+	$gspot_settings_page = new GspotSettingsPage();
