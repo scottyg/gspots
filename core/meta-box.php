@@ -127,7 +127,7 @@ add_action( 'save_post', 'gspot_meta_save' );
 function gspot_admin_styles(){
 	global $typenow;
 	if( $typenow == 'location' ) {
-		wp_enqueue_style( 'gspot_meta_box_styles', plugin_dir_url( __FILE__ ) . 'gspot.css' );
+		wp_enqueue_style( 'gspot_meta_box_styles', $url . 'style/gspot.css' );
 	}
 }
 add_action( 'admin_print_styles', 'gspot_admin_styles' );

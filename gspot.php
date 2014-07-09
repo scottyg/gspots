@@ -13,6 +13,7 @@ Domain Path: /languages
 $dir = plugin_dir_path( __FILE__ );
 $url = plugin_dir_url( __FILE__ );
 
+require_once( $dir. "core/settings.php" );
 require_once( $dir. "core/post-type.php" );
 require_once( $dir. "core/taxonomy.php" );
 require_once( $dir. "core/meta-box.php" );
