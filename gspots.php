@@ -19,4 +19,5 @@ require_once( GSPOTS_PATH . "core/settings.php" );
 require_once( GSPOTS_PATH . "core/post-type.php" );
 require_once( GSPOTS_PATH . "core/taxonomy.php" );
 require_once( GSPOTS_PATH . "core/meta-box.php" );
+require_once( GSPOTS_PATH . "core/markers.php" );
 require_once( GSPOTS_PATH . "core/shortcode.php" );

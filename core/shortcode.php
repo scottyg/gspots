@@ -50,12 +50,46 @@ class gspots_Shortcode {
 	static function inline_script() {
 	
 		$geocode = json_decode( geocache( self::$attributes['zip'] ) );
+
+		$markers = json_decode( markers::get_json() );
+
+		if( $markers != null ) {
+		
+			//var_dump( $markers );		
+			//var_dump( $markers->options->type );
+			$markers_js = "";
+			foreach( $markers->entries as $marker ) {
+				$this_marker = "
+			
+			".self::$instance_id.".addMarker({
+				lat: ".$marker->lt.",
+				lng: ".$marker->ln.",
+				title: '".$marker->title."',
+				click: function(e){
+					if(console.log)
+						console.log(e);
+					console.log('You clicked in this marker');
+				},
+				mouseover: function(e){
+					if(console.log)
+						console.log(e);
+				},
+				infoWindow: {
+					content: '<h1>".$marker->title."</h1><p>".$marker->content."</p><p>".$marker->address."<br/>".$marker->zip."<br/>".$marker->city."<br/>".$marker->state."</p>'
+				}
+			});
+			
+				";
+				$markers_js .= $this_marker;
+				
+			}
+		}
 		
 		echo "
 	<script type='text/javascript'>
 	
-	
-	var ".self::$instance_id.";
+		var ".self::$instance_id.";
+		
 		$(document).ready(function(){
 			".self::$instance_id." = new GMaps({
 				el: '#".self::$instance_id."',
@@ -64,35 +98,9 @@ class gspots_Shortcode {
 				lng: " . $geocode->ln . ",
 				scrollwheel: ".self::$attributes['scroll'].",
 			});
-			/*
-			".self::$instance_id.".addMarker({
-				lat: -12.043333,
-				lng: -77.03,
-				title: 'Lima',
-				details: {
-					database_id: 42,
-					author: 'HPNeo'
-				},
-				click: function(e){
-					if(console.log)
-						console.log(e);
-					alert('You clicked in this marker');
-				},
-				mouseover: function(e){
-					if(console.log)
-						console.log(e);
-				}
-			});
-			".self::$instance_id.".addMarker({
-				lat: -12.042,
-				lng: -77.028333,
-				title: 'Marker with InfoWindow',
-				infoWindow: {
-					content: '<p>HTML Content</p>'
-				}
-			});
-			*/
-		
+			
+			" . $markers_js . "
+					
 		});
 	</script>
 	
@@ -101,4 +109,3 @@ class gspots_Shortcode {
 }
 
 gspots_Shortcode::init();
-
