@@ -10,11 +10,13 @@ Text Domain: gspots
 Domain Path: /languages
 */
 
-$dir = plugin_dir_path( __FILE__ );
-$url = plugin_dir_url( __FILE__ );
-
-require_once( $dir. "core/settings.php" );
-require_once( $dir. "core/post-type.php" );
-require_once( $dir. "core/taxonomy.php" );
-require_once( $dir. "core/meta-box.php" );
-require_once( $dir. "core/shortcode.php" );
+define('GSPOTS_PATH', plugin_dir_path( __FILE__ ) );
+define('GSPOTS_URL', plugin_dir_url( __FILE__ ) );
+define('GSPOTS_CACHE_LOCATION', GSPOTS_PATH . 'geocache.json' );
+	
+require_once( GSPOTS_PATH . "core/geocache.php" );
+require_once( GSPOTS_PATH . "core/settings.php" );
+require_once( GSPOTS_PATH . "core/post-type.php" );
+require_once( GSPOTS_PATH . "core/taxonomy.php" );
+require_once( GSPOTS_PATH . "core/meta-box.php" );
+require_once( GSPOTS_PATH . "core/shortcode.php" );

@@ -2,6 +2,7 @@
 /**
  * Adds a meta box to the post editing screen
  */
+
 function gspots_custom_meta() {
 	add_meta_box( 'gspots_meta', __( 'Location Details', 'gspots-textdomain' ), 'gspots_meta_callback', 'location' );
 }
@@ -92,29 +93,18 @@ function gspots_meta_save( $post_id ) {
 	}
 	// Calculate Long and lat from google
 	if( isset( $_POST[ 'meta-address-text' ] ) || isset( $_POST[ 'meta-zip-text' ] ) || isset( $_POST[ 'meta-city-text' ] ) || isset( $_POST[ 'meta-state-text' ] ) ) {
-		$region = "US";
+		
 		$address = sanitize_text_field( $_POST[ 'meta-address-text' ] ) . " ";
 		$zip = sanitize_text_field( $_POST[ 'meta-zip-text' ] ) . " ";
 		$city = sanitize_text_field( $_POST[ 'meta-city-text' ] ) . " ";
 		$state = sanitize_text_field( $_POST[ 'meta-state-text' ] );
-		//$address = "89117";
+		
 		$full_address = $address . $zip . $city . $state;
 		
-		$url = "http://maps.google.com/maps/api/geocode/json?address=".urlencode($full_address)."&sensor=false";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		$response = curl_exec($ch);
-		curl_close($ch);
-		$response_a = json_decode($response);
-		$lat = $response_a->results[0]->geometry->location->lat;
-		$long = $response_a->results[0]->geometry->location->lng;
+		$geocode = json_decode( geocache( $full_address ) );
 		
-		update_post_meta( $post_id, 'meta-lng-text', $long );
-		update_post_meta( $post_id, 'meta-lat-text', $lat );
+		update_post_meta( $post_id, 'meta-lng-text', $geocode->ln );
+		update_post_meta( $post_id, 'meta-lat-text', $geocode->lt );
 		
 	}
 
@@ -127,7 +117,7 @@ add_action( 'save_post', 'gspots_meta_save' );
 function gspots_admin_styles(){
 	global $typenow;
 	if( $typenow == 'location' ) {
-		wp_enqueue_style( 'gspots_meta_box_styles', $url . 'style/gspots.css' );
+		wp_enqueue_style( 'gspots_meta_box_styles', GSPOTS_URL . 'core/style/gspots-admin.css' );
 	}
 }
 add_action( 'admin_print_styles', 'gspots_admin_styles' );
