@@ -4,7 +4,7 @@
  */
 
 function gspots_custom_meta() {
-	add_meta_box( 'gspots_meta', __( 'Location Details', 'gspots-textdomain' ), 'gspots_meta_callback', 'location' );
+	add_meta_box( 'gspots_meta', __( 'Location Details', 'gspots-textdomain' ), 'gspots_meta_callback', 'spot' );
 }
 add_action( 'add_meta_boxes', 'gspots_custom_meta' );
 
@@ -116,7 +116,7 @@ add_action( 'save_post', 'gspots_meta_save' );
  */
 function gspots_admin_styles(){
 	global $typenow;
-	if( $typenow == 'location' ) {
+	if( $typenow == 'spot' ) {
 		wp_enqueue_style( 'gspots_meta_box_styles', GSPOTS_URL . 'core/style/gspots-admin.css' );
 	}
 }

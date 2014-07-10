@@ -1,9 +1,9 @@
 <?php
 /**
- * Location Type Taxonomy For Location Post Type
+ * Type Taxonomy For Spot Post Type
  */
 function type_init() {
-	register_taxonomy( 'type', array( 'location' ), array(
+	register_taxonomy( 'type', array( 'spot' ), array(
 		'hierarchical'      => false,
 		'public'            => true,
 		'show_in_nav_menus' => true,
@@ -18,21 +18,21 @@ function type_init() {
 			'assign_terms'  => 'edit_posts'
 		),
 		'labels'            => array(
-			'name'                       => __( 'Location Types', 'gspots_location_type' ),
-			'singular_name'              => _x( 'Location Type', 'taxonomy general name', 'gspots_location_type' ),
-			'search_items'               => __( 'Search Location Types', 'gspots_location_type' ),
-			'popular_items'              => __( 'Popular Location Types', 'gspots_location_type' ),
-			'all_items'                  => __( 'All Location Types', 'gspots_location_type' ),
-			'parent_item'                => __( 'Parent Location Type', 'gspots_location_type' ),
-			'parent_item_colon'          => __( 'Parent Location Type:', 'gspots_location_type' ),
-			'edit_item'                  => __( 'Edit Location Type', 'gspots_location_type' ),
-			'update_item'                => __( 'Update Location Type', 'gspots_location_type' ),
-			'add_new_item'               => __( 'New Location Type', 'gspots_location_type' ),
-			'new_item_name'              => __( 'New Location Type', 'gspots_location_type' ),
-			'separate_items_with_commas' => __( 'Location Types separated by comma', 'gspots_location_type' ),
-			'add_or_remove_items'        => __( 'Add or remove Location Types', 'gspots_location_type' ),
-			'choose_from_most_used'      => __( 'Choose from the most used Location Types', 'gspots_location_type' ),
-			'menu_name'                  => __( 'Location Types', 'gspots_location_type' ),
+			'name'                       => __( 'Types', 'gspots_spot_type' ),
+			'singular_name'              => _x( 'Type', 'taxonomy general name', 'gspots_spot_type' ),
+			'search_items'               => __( 'Search Types', 'gspots_spot_type' ),
+			'popular_items'              => __( 'Popular Types', 'gspots_spot_type' ),
+			'all_items'                  => __( 'All Types', 'gspots_spot_type' ),
+			'parent_item'                => __( 'Parent Type', 'gspots_spot_type' ),
+			'parent_item_colon'          => __( 'Parent Type:', 'gspots_spot_type' ),
+			'edit_item'                  => __( 'Edit Type', 'gspots_spot_type' ),
+			'update_item'                => __( 'Update Type', 'gspots_spot_type' ),
+			'add_new_item'               => __( 'New Type', 'gspots_spot_type' ),
+			'new_item_name'              => __( 'New Type', 'gspots_spot_type' ),
+			'separate_items_with_commas' => __( 'Types separated by comma', 'gspots_spot_type' ),
+			'add_or_remove_items'        => __( 'Add or remove Types', 'gspots_spot_type' ),
+			'choose_from_most_used'      => __( 'Choose from the most used Types', 'gspots_spot_type' ),
+			'menu_name'                  => __( 'Types', 'gspots_spot_type' ),
 		),
 	) );
 

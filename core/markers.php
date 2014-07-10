@@ -14,7 +14,7 @@ class markers {
 		}
 		
 		$entries = array();
-		$args = array( 'post_type' => 'location', 'posts_per_page' => 100 );
+		$args = array( 'post_type' => 'spot', 'posts_per_page' => 100 );
 		$loop = new WP_Query( $args );
 		
 		while ( $loop->have_posts() ) : $loop->the_post();

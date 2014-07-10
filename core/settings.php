@@ -26,7 +26,7 @@ class gspotsSettingsPage
 		// This page will be under "Settings"
 		add_options_page(
 			'Settings Admin', 
-			'gspots', 
+			'Gspots', 
 			'manage_options', 
 			'gspots-setting-admin', 
 			array( $this, 'create_admin_page' )
@@ -43,7 +43,7 @@ class gspotsSettingsPage
 		?>
 		<div class="wrap">
 			<?php screen_icon(); ?>
-			<h2>gspots Settings</h2>		   
+			<h2>Gspots Settings</h2>		   
 			<form method="post" action="options.php">
 			<?php
 				// This prints out all hidden setting fields
