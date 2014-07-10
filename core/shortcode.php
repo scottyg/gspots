@@ -87,7 +87,7 @@ class gspots_Shortcode {
 				lat: ".$marker->lt.",
 				lng: ".$marker->ln.",
 				title: '".$marker->title."',
-				icon: '" . GSPOTS_URL . "core/markers/marker.png',
+				icon: '" . GSPOTS_URL . "core/markers/marker_red.png',
 				click: function(e){
 					if(console.log)
 						console.log(e);
