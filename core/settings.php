@@ -91,8 +91,8 @@ class gspotsSettingsPage
 	public function sanitize( $input )
 	{
 		$new_input = array();
-		if( isset( $input['api_key'] ) )
-			$new_input['api_key'] = sanitize_text_field( $input['api_key'] );
+		if( isset( $input['key'] ) )
+			$new_input['key'] = sanitize_text_field( $input['key'] );
 
 		return $new_input;
 	}

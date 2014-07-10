@@ -57,8 +57,8 @@ class gspots_Shortcode {
 	}
 
 	static function register_script() {
-	
-		wp_register_script('google-maps-api', 'http://maps.google.com/maps/api/js?key=' . get_option( 'api' )[ 'key' ] . '&sensor=true', '', NULL, true);
+		
+		wp_register_script('google-maps-api', 'http://maps.google.com/maps/api/js?key=' . get_option( 'key' ) . '&sensor=true', '', NULL, true);
 		wp_register_script('gmaps', GSPOTS_URL . 'core/vendor/gmaps.js', '', NULL, true);
 		wp_register_script('powerange', GSPOTS_URL . 'core/vendor/powerange.js', '', NULL, true);
 		
@@ -189,8 +189,6 @@ class gspots_Shortcode {
 				if (unit=='N') { dist = dist * 0.8684; }
 				return dist;
 			}
-						
-
 			
 		});
 	</script>
