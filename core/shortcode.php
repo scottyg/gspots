@@ -87,6 +87,7 @@ class gspots_Shortcode {
 				lat: ".$marker->lt.",
 				lng: ".$marker->ln.",
 				title: '".$marker->title."',
+				icon: '" . GSPOTS_URL . "core/markers/marker.png',
 				click: function(e){
 					if(console.log)
 						console.log(e);
@@ -117,13 +118,13 @@ class gspots_Shortcode {
 		
 		$(document).ready(function(){
 			var $".self::$instance_id."_form = $('#".self::$instance_id."_form');
-		
+			
 			".self::$instance_id." = new GMaps({
 				el: '#".self::$instance_id."',
-				zoom: ".self::$attributes['zoom'].",
 				lat: " . $geocode->lt . ",
 				lng: " . $geocode->ln . ",
 				scrollwheel: ".self::$attributes['scroll'].",
+				zoom: ".self::$attributes['zoom'].",
 			});
 			fence_radius = ".self::$instance_id.".drawCircle({
 				lat: ".$geocode->lt.",
