@@ -11,7 +11,12 @@ License URI: https://raw.githubusercontent.com/scottyg/gspots/master/LICENSE
 Google maps location finder. Display map with markers and info. Input spots from admin.
 
 == Description ==
-Coming soon
+Google maps location finder. Display map with markers and info. Input spots from admin.
+
+
+Basic Shortcode usage
+[gspots zip=89118 radius=50 ]
+[gspots_form]
 
 == Installation ==
 For now youll need to get from https://github.com/scottyg/gspots.
