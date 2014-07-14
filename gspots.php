@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Gspots
-Version: 1.0.1
+Version: 1.0.2
 Description: Google maps location finder.
 Author: Scott Gordon
-Author URI: https://github.com/scottyg/
-Plugin URI: https://github.com/scottyg/gspots
+Author URI: https://iamscottyg.com
+Plugin URI: http://wordpress.org/plugins/gspots/
 Text Domain: gspots
 Domain Path: /languages
 */
