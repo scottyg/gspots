@@ -5,7 +5,7 @@
 
 class markers {
 	
-	public function get_json( $options ) {
+	public function get_json( $options = null ) {
 	
 		if( $options == null ) {
 			$options = array(
