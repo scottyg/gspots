@@ -13,17 +13,23 @@ Google maps location finder. Display map with markers and info. Input spots from
 == Description ==
 Google maps location finder. Display map with markers and info. Input spots from admin.
 
-
 Basic Shortcode usage
+
 [gspots zip=89118 radius=50 ]
+
 [gspots_form]
 
 == Installation ==
-For now youll need to get from https://github.com/scottyg/gspots.
-Add Gspots by uploading the gspots folder into your plugins folder.
-After activating the plugin you will need to add your google api key to the Gspots Settings page.
-Thats it.
+1. Download Gspots from the [plugin page](http://wordpress.org/plugins/gspots) or download directly from your wordpress installation.
+2. Add Gspots by uploading the gspots folder into your plugins folder.
+3. After activating the plugin you will need to add your google api key to the Gspots Settings page.
+4. Thats it.
 
 == Changelog ==
-1.0.1 Fixed Bugs And Updated Markers
-1.0.0 Initial Release
+
+= 1.0.1 =
+* Fixed Bugs.
+* Updated Markers.
+
+= 1.0.0 =
+* Initial Release
