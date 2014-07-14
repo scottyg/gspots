@@ -2,9 +2,9 @@
 Contributors: scottygfunk
 Tags: google, map, location, search, store, finder, gspots, spots
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MF4G9KS27S2UY
-Requires at least: 3.9.1
+Requires at least: 3.4
 Tested up to: 3.9.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: MIT
 License URI: https://raw.githubusercontent.com/scottyg/gspots/master/LICENSE
 
@@ -26,6 +26,11 @@ Basic Shortcode usage
 4. Thats it.
 
 == Changelog ==
+
+= 1.0.2 =
+* Tested Versions (Requires at least: 3.4).
+* Fixed Jquery Bug.
+* Fixed JSON Bug.
 
 = 1.0.1 =
 * Fixed Bugs.

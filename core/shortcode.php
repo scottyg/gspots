@@ -112,6 +112,8 @@ class gspots_Shortcode {
 		}
 		
 		echo "
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
 	<script type='text/javascript'>
 	
 		var ".self::$instance_id.";
