@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Gspots
-Version: 1.0.2
+Version: 1.0.3
 Description: Google maps location finder.
 Author: Scott Gordon
 Author URI: https://iamscottyg.com

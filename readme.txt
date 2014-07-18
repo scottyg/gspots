@@ -4,7 +4,7 @@ Tags: google, map, location, search, store, finder, gspots, spots
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MF4G9KS27S2UY
 Requires at least: 3.4
 Tested up to: 3.9.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: MIT
 License URI: https://raw.githubusercontent.com/scottyg/gspots/master/LICENSE
 
@@ -26,6 +26,9 @@ Basic Shortcode usage
 4. Thats it.
 
 == Changelog ==
+
+= 1.0.3 =
+* Added zip form placeholder to shortcode option
 
 = 1.0.2 =
 * Tested Versions (Requires at least: 3.4).
