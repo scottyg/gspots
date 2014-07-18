@@ -66,9 +66,9 @@ function geocache( $address ) {
 			$return['lt'] = $response_a->results[0]->geometry->location->lat;
 			
 			$cache[] = array(
-				address => $address,
-				ln => $response_a->results[0]->geometry->location->lng,
-				lt => $response_a->results[0]->geometry->location->lat
+				'address' => $address,
+				'ln' => $response_a->results[0]->geometry->location->lng,
+				'lt' => $response_a->results[0]->geometry->location->lat
 			);
 			file_put_contents ( GSPOTS_CACHE_LOCATION, json_encode($cache) );
 			

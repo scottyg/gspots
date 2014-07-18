@@ -4,7 +4,7 @@ Tags: google, map, location, search, store, finder, gspots, spots
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MF4G9KS27S2UY
 Requires at least: 3.4
 Tested up to: 3.9.1
-Stable tag: 1.0.3
+Stable tag: 1.0.5
 License: MIT
 License URI: https://raw.githubusercontent.com/scottyg/gspots/master/LICENSE
 
@@ -26,6 +26,10 @@ Basic Shortcode usage
 4. Thats it.
 
 == Changelog ==
+
+= 1.0.5 =
+* Fixed geocache bug
+* Added thumbnails to spot post type
 
 = 1.0.4 =
 * Fixed multiple bugs
