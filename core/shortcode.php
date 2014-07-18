@@ -45,10 +45,11 @@ class gspots_Shortcode {
 				'max' => 500,
 				'min' => 1,
 				'submit' => 'Search'
-		), $atts );
+				'zip'=> 'Zip'
+			), $atts );
 		
 		$form_div = '<form id="'.self::$instance_id.'_form" class="'.self::$form_attributes['class'].'">
-			<div><input type="text" id="'.self::$instance_id.'_zip" name="'.self::$instance_id.'_zip" placeholder="Zip"/></div>
+			<div><input type="text" id="'.self::$instance_id.'_zip" name="'.self::$instance_id.'_zip" placeholder="'.self::$form_attributes['zip'].'"/></div>
 			<input type="text" id="'.self::$instance_id.'_radius" name="'.self::$instance_id.'_radius" />
 			<div><input type="submit" value="'.self::$form_attributes['submit'].'"/></div>
 		</form>';
