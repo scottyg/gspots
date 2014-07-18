@@ -44,7 +44,7 @@ class gspots_Shortcode {
 				'class' => 'gspots-form',
 				'max' => 500,
 				'min' => 1,
-				'submit' => 'Search'
+				'submit' => 'Search',
 				'zip'=> 'Zip'
 			), $atts );
 		
