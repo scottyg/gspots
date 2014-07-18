@@ -112,91 +112,93 @@ class gspots_Shortcode {
 			}
 		}
 		
-		echo "
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-
-	<script type='text/javascript'>
+		if( !$geocode->error ){
+			echo "
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 	
-		var ".self::$instance_id.";
+		<script type='text/javascript'>
 		
-		$(document).ready(function(){
-			var $".self::$instance_id."_form = $('#".self::$instance_id."_form');
+			var ".self::$instance_id.";
 			
-			".self::$instance_id." = new GMaps({
-				el: '#".self::$instance_id."',
-				lat: " . $geocode->lt . ",
-				lng: " . $geocode->ln . ",
-				scrollwheel: ".self::$attributes['scroll'].",
-				zoom: ".self::$attributes['zoom'].",
-			});
-			fence_radius = ".self::$instance_id.".drawCircle({
-				lat: ".$geocode->lt.",
-				lng: ".$geocode->ln.",
-				radius: ".self::$attributes['radius']*1609.34.",
-				strokeColor: '#BBD8E9',
-				strokeOpacity: 0,
-				strokeWeight: 0,
-				fillColor: '#BBD8E9',
-				fillOpacity: 0
-			});
-			" . $markers_js . "
-						
-			var ".self::$instance_id."_elem = document.querySelector('#".self::$instance_id."_radius');
-			var ".self::$instance_id."_init = new Powerange(".self::$instance_id."_elem, { min: ".self::$form_attributes['min'].", max: ".self::$form_attributes['max'].", start: ".self::$attributes['radius']." });
-
-			$".self::$instance_id."_form.submit(function(e){
-				e.preventDefault();
-				var zip_input = $('#".self::$instance_id."_zip').val().trim();
-				var radius_input = $('#".self::$instance_id."_radius').val().trim();
+			$(document).ready(function(){
+				var $".self::$instance_id."_form = $('#".self::$instance_id."_form');
 				
-				GMaps.geocode({
-					address: zip_input,
-					callback: function(results, status){
-						if(status=='OK'){
-							var latlng = results[0].geometry.location;
-							
-							" . $markers_js . "
-
-							do_fence(latlng.lat(), latlng.lng(), radius_input);
-							
-							".self::$instance_id.".setCenter(latlng.lat(), latlng.lng());
-							
-						}
-					}
+				".self::$instance_id." = new GMaps({
+					el: '#".self::$instance_id."',
+					lat: " . $geocode->lt . ",
+					lng: " . $geocode->ln . ",
+					scrollwheel: ".self::$attributes['scroll'].",
+					zoom: ".self::$attributes['zoom'].",
 				});
-			});
-			function do_fence(lt, ln, rad) {
-				var markers = ".self::$instance_id.".markers;
-				for (var i = 0; i < markers.length; i++) {
-					
-					if (distance(markers[i]['position']['k'],markers[i]['position']['B'], lt, ln, 'N') >= rad){
-					  markers[i].setMap(null);
-					}	
-				}
-			}
-			do_fence(".$geocode->lt.", ".$geocode->ln.", ".self::$attributes['radius'].");
-
-			function distance(lat1, lon1, lat2, lon2, unit) {
-			
-				var radlat1 = Math.PI * lat1/180;
-				var radlat2 = Math.PI * lat2/180;
-				var radlon1 = Math.PI * lon1/180;
-				var radlon2 = Math.PI * lon2/180;
-				var theta = lon1-lon2;
-				var radtheta = Math.PI * theta/180;
-				var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-				dist = Math.acos(dist);
-				dist = dist * 180/Math.PI;
-				dist = dist * 60 * 1.1515;
-				if (unit=='K') { dist = dist * 1.609344; }
-				if (unit=='N') { dist = dist * 0.8684; }
-				return dist;
-			}
-			
-		});
-	</script>
+				fence_radius = ".self::$instance_id.".drawCircle({
+					lat: ".$geocode->lt.",
+					lng: ".$geocode->ln.",
+					radius: ".self::$attributes['radius']*1609.34.",
+					strokeColor: '#BBD8E9',
+					strokeOpacity: 0,
+					strokeWeight: 0,
+					fillColor: '#BBD8E9',
+					fillOpacity: 0
+				});
+				" . $markers_js . "
+							
+				var ".self::$instance_id."_elem = document.querySelector('#".self::$instance_id."_radius');
+				var ".self::$instance_id."_init = new Powerange(".self::$instance_id."_elem, { min: ".self::$form_attributes['min'].", max: ".self::$form_attributes['max'].", start: ".self::$attributes['radius']." });
 	
-		";
+				$".self::$instance_id."_form.submit(function(e){
+					e.preventDefault();
+					var zip_input = $('#".self::$instance_id."_zip').val().trim();
+					var radius_input = $('#".self::$instance_id."_radius').val().trim();
+					
+					GMaps.geocode({
+						address: zip_input,
+						callback: function(results, status){
+							if(status=='OK'){
+								var latlng = results[0].geometry.location;
+								
+								" . $markers_js . "
+	
+								do_fence(latlng.lat(), latlng.lng(), radius_input);
+								
+								".self::$instance_id.".setCenter(latlng.lat(), latlng.lng());
+								
+							}
+						}
+					});
+				});
+				function do_fence(lt, ln, rad) {
+					var markers = ".self::$instance_id.".markers;
+					for (var i = 0; i < markers.length; i++) {
+						
+						if (distance(markers[i]['position']['k'],markers[i]['position']['B'], lt, ln, 'N') >= rad){
+						  markers[i].setMap(null);
+						}	
+					}
+				}
+				do_fence(".$geocode->lt.", ".$geocode->ln.", ".self::$attributes['radius'].");
+	
+				function distance(lat1, lon1, lat2, lon2, unit) {
+				
+					var radlat1 = Math.PI * lat1/180;
+					var radlat2 = Math.PI * lat2/180;
+					var radlon1 = Math.PI * lon1/180;
+					var radlon2 = Math.PI * lon2/180;
+					var theta = lon1-lon2;
+					var radtheta = Math.PI * theta/180;
+					var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+					dist = Math.acos(dist);
+					dist = dist * 180/Math.PI;
+					dist = dist * 60 * 1.1515;
+					if (unit=='K') { dist = dist * 1.609344; }
+					if (unit=='N') { dist = dist * 0.8684; }
+					return dist;
+				}
+				
+			});
+		</script>
+		
+			";	
+		}
 	}
 }
 

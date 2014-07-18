@@ -27,6 +27,9 @@ Basic Shortcode usage
 
 == Changelog ==
 
+= 1.0.4 =
+* Fixed multiple bugs
+
 = 1.0.3 =
 * Added zip form placeholder to shortcode option
 
