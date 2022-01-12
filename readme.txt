@@ -1,4 +1,4 @@
-=== Gspots ===
+=== DEPRECATED ===
 Contributors: scottygfunk
 Tags: google, map, location, search, store, finder, gspots, spots
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MF4G9KS27S2UY
